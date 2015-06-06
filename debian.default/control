@@ -1,0 +1,28 @@
+Source: yaul@YAUL_MAJOR@.@YAUL_MINOR@
+Section: libs
+Priority: optional
+Maintainer: Paweł Tomulik <ptomulik@meil.pw.edu.pl>
+Build-Depends: debhelper (>= 9), dpkg-dev (>= 1.16.1~), help2man, xsltproc,
+ doxygen
+Standards-Version: 3.9.5
+Homepage: https://github.com/ptomulik/yaul
+Vcs-Git: git://github.com/ptomulik/yaul-packaging.git
+Vcs-Browser: https://github.com/ptomulik/yaul-packaging
+
+Package: libyaul@YAUL_MAJOR@.@YAUL_MINOR@-dev
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost1.55-dev | libboost-dev,
+ libstdc++-4.8-dev | libstdc++-4.9-dev | libstdc++-dev
+Description: Yaul is a library of utilities based on Boost (http://boost.org)
+ libraries. Certain functionalities contained in Boost libraries are
+ reimplemented here using modern C++ standards (c++11 and later).
+ .
+ This package provides headers for all yaul libraries.
+
+Package: libyaul@YAUL_MAJOR@.@YAUL_MINOR@-doc
+Homepage: https://github.com/ptomulik/yaul
+Section: doc
+Depends: ${misc:Depends}
+Suggests: libyaul@YAUL_MAJOR@.@YAUL_MINOR@-dev (>= ${source:Version})
+Architecture: all
+Description: documentation for yaul libraries

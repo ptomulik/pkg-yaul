@@ -1,0 +1,5 @@
+yaul@YAUL_MAJOR@.@YAUL_MINOR@ (@YAUL_VERSION@-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Paweł Tomulik <ptomulik@meil.pw.edu.pl>  @FOOT_DATE@
