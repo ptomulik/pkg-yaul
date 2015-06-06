@@ -43,7 +43,7 @@ FOOT_DATE=`LANG=C date -R`
   -e "s/@YAUL_VERSION@/${YAUL_VERSION}/g" \
   -e "s/@YAUL_MAJOR@/${YAUL_MAJOR}/g" \
   -e "s/@YAUL_MINOR@/${YAUL_MINOR}/g" \
-  -e "s/@FOOT_DATE@/${FOOTNOTE_DATE}/g")
+  -e "s/@FOOT_DATE@/${FOOT_DATE}/g")
 
 ##(cd ${TOPSRCDIR} && git checkout --orphan debian-upstream/${DEBIAN_RELEASE})
 ##

@@ -13,9 +13,9 @@ Package: libyaul@YAUL_MAJOR@.@YAUL_MINOR@-dev
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libboost1.55-dev | libboost-dev,
  libstdc++-4.8-dev | libstdc++-4.9-dev | libstdc++-dev
-Description: Yaul is a library of utilities based on Boost (http://boost.org)
- libraries. Certain functionalities contained in Boost libraries are
- reimplemented here using modern C++ standards (c++11 and later).
+Description: Yaul is a library of utilities based on Boost (http://boost.org).
+ Certain functionalities contained in Boost libraries are reimplemented here
+ using modern C++ standards (c++11 and later).
  .
  This package provides headers for all yaul libraries.
 
@@ -25,4 +25,5 @@ Section: doc
 Depends: ${misc:Depends}
 Suggests: libyaul@YAUL_MAJOR@.@YAUL_MINOR@-dev (>= ${source:Version})
 Architecture: all
-Description: documentation for yaul libraries
+Description: Documentation for yaul libraries
+  We have no docs packaged for Debian so far.

@@ -28,19 +28,15 @@ The repository contains several separate branches for different purposes
 Tasks
 -----
 
-Creating soruce tarball
-```````````````````````
+General: Creating soruce tarball
+````````````````````````````````
 
-- Create tarball out of upstream's ``yaul-0.1.0`` tag
-
-.. code:: shell
+- Create tarball out of upstream's ``yaul-0.1.1`` tag::
 
     git checkout default
-    ./scripts/create-tarball yaul-0.1.0
+    ./scripts/create-tarball yaul-0.1.1
 
-- Create source tarball from most recent upstream commit
-
-.. code:: shell
+- Create source tarball from most recent upstream commit::
 
     git checkout default
     ./scripts/create-tarball master
@@ -49,68 +45,84 @@ The script requires an access to temporary directory (usually ``/tmp``, see
 ``mktemp(1)``) where it clones the upstream repository and manipulates files.
 
 
-Creating soruce tarball for Debian packaging tools
-``````````````````````````````````````````````````
-.. code:: shell
+Debian: Creating soruce tarball
+```````````````````````````````
+
+- Create normal source tarball and rename it appropriatelly::
 
     git checkout default
-    ./scripts/create-tarball yaul-0.1.0
-    mv ../yaul-0.1.0.tar.gz ../yaul_0.1.0.orig.tar.gz
+    ./scripts/create-tarball yaul-0.1.1
+    mv ../yaul-0.1.1.tar.gz ../yaul0.1_0.1.1.orig.tar.gz
 
-Preparing support for new Debian release
+Debian: Packaging for new Debian release
 ````````````````````````````````````````
 
 - Prepare initial ``debian`` directory::
 
     git checkout default
-    ./scripts/create-debian-release stretch 0.1.0
+    ./scripts/create-debian-release stretch 0.1.1
 
   this shall create ``debian.stretch`` with the initial contents of ``debian``
   directory for stretch release.
 
-- Prepare a source tarball::
-
-    ./scripts/create-tarball yaul-0.1.0
-    mv ../yaul-0.1.0.tar.gz ../yaul_0.1.0.orig.tar.gz
-
-- create branch for upstream sources::
+- create branch for debian upstream::
 
     git checkout --orphan debian-upstream/stretch
+    git rm -rf --cached .
+    git commit --allow-empty -m 'initial commit for debian-upstream/stretch'
 
 - create branch for debian packaging::
 
     git checkout -b debian-debian/stretch
+    git commit --allow-empty -m 'initial commit for debian-debian/stretch'
 
-- switch to the packaging branch and initialize ``debian/`` directory::
 
-    git checkout -b debian-dfsg/stretch
-    mv debian.stretch debian
+- put initial files to branches::
 
-.. code:: shell
+    git checkout debian-upstream/stretch
+    mv gitignore.debian-upstream .gitignore
+    git add .gitignore
+    git commit -m 'added .gitignore'
 
     git checkout debian-debian/stretch
-    mkdir debian/
-    git show default:debian.default/gbp.conf | sed -e 's/@DEBIAN_RELEASE@/stretch/g' > debian/gbp.conf
-    get show default:debian.default/compat > debian/compat
-
-.. <!--- dh_make -m -e ptomulik@meil.pw.edu.pl -p yaul_0.1.0 -->
-
-- put the following contents to debian/gbp.conf
-
-.. 
+    mv gitignore.debian-packaging .gitignore
+    mv debian.stretch debian
+    git add .gitignore debian
+    git commit -m 'added .gitignore and debian/'
 
 
-Build package
-`````````````
+- prepare a source tarball::
+
+    git checkout default
+    ./scripts/create-tarball yaul-0.1.1
+    mv ../yaul-0.1.1.tar.gz ../yaul0.1_0.1.1.orig.tar.gz
+
+- import the source tarball::
+
+    git checkout debian-debian/stretch
+    gbp import-orig ../yaul0.1_0.1.1.orig.tar.gz
+
+- build the package::
+
+    gbp buildpackage
+
+
+Debian: Build package
+`````````````````````
 
 .. code::
 
     git checkout debian-debian/stretch
+    debian/rules clean
     gbp buildpackage
 
-New release
-```````````
+Debian: New release of package
+``````````````````````````````
 
+.. code::
+
+    git checkout debian-debian/stretch
+    gbp --release --auto
 
 .. _yaul: https://github.com/ptomulik/yaul
 .. _git-buildpackage: https://honk.sigxcpu.org/piki/projects/git-buildpackage/
