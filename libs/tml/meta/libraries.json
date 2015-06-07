@@ -1,0 +1,14 @@
+{
+  "key"     : "tml",
+  "name"    : "TML",
+  "authors" : [
+    "Pawel Tomulik"
+  ],
+  "description" : "Template Metaprogramming Library",
+  "category" : [
+    "Metaprogramming"
+  ],
+  "maintainers" : [
+    "Pawel Tomulik <ptomulik -at- meil.pw.edu.pl>"
+  ]
+}

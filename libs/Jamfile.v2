@@ -1,0 +1,21 @@
+# Jamfile.v2
+#
+# Copyright (C) 2013 Bjorn Roald
+#
+# Distributed under the Boost Software License, Version 1.0.
+# See www.boost.org/LICENSE_1_0.txt
+#
+# Boost libraries common project properties:
+#
+# Under modularized layout, ensure all inheriting projects get
+# implicit dependency to headers staged as links in <boost-root>/boost
+# and <boost-root>/yaul
+
+project yaul/libs
+   : requirements <implicit-dependency>/yaul//yaul-headers
+                  <implicit-dependency>/yaul//boost-headers
+   ;
+
+##project boost/libs
+##   : requirements <implicit-dependency>/boost//boost-headers
+##   ;
