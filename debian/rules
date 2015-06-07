@@ -179,7 +179,6 @@ mk_debhelper_files = \
 	$(call add_dev_override,extra-license-file) \
 	$(call add_doc_override,description-synopsis-starts-with-a-capital-letter) \
 	$(call add_doc_override,extra-license-file) \
-	$(call add_libdev_override,python,,description-synopsis-starts-with-a-capital-letter) \
 	$(foreach l, $(yaul_libs), \
 		echo "making debhelper files for $(l)..."; \
 		$(call add_lib_override,$(l),,package-name-doesnt-match-sonames) \
@@ -222,11 +221,9 @@ clean-debhelper:
 # Make all the generated debhelper files.
 make-debhelper: clean-debhelper $(filtered_files)
 	@$(call mk_debhelper_files)
-	@$(call cp_debhelper,libyaul-dbg,libyaul$(PKGVERSION)-dbg)
 	@$(call cp_debhelper,libyaul-dev,libyaul$(PKGVERSION)-dev)
 	@$(call cp_debhelper,libyaul-doc,libyaul$(PKGVERSION)-doc)
-	@$(call cp_debhelper,libyaul-python-dev,libyaul-python$(PKGVERSION)-dev)
-	@$(call cp_debhelper,libyaul-mpi-python-dev,libyaul-mpi-python$(PKGVERSION)-dev)
+	@$(call cp_debhelper,libyaul-dbg,libyaul$(PKGVERSION)-dbg)
 
 # debmake generated override targets
 # This is example for Cmake (See http://bugs.debian.org/641051 )
