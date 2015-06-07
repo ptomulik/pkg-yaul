@@ -59,7 +59,7 @@ Debian: Creating soruce tarball
 Debian: Enable support for new Debian release
 `````````````````````````````````````````````
 
-In the following **replace stretch with your preferred release codename**.
+In the following replace ``stretch`` with your preferred release codename.
 
 - Prepare initial ``debian`` directory::
 
