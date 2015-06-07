@@ -13,6 +13,8 @@ The repository contains several separate branches for different purposes
 +---------------------------------+-----------------------------------------------------------------------------------------------------------+
 | Branch                          | Purpose                                                                                                   |
 +=================================+===========================================================================================================+
+| *default*                       | default branch with common scripts, instructions and files, not used for actual packaging                 |
++---------------------------------+-----------------------------------------------------------------------------------------------------------+
 | *debian-debian/<release>*       | the Debian packaging for a <release> (e.g., jessie, wheezy, sid or experimental)                          |
 +---------------------------------+-----------------------------------------------------------------------------------------------------------+
 | *debian-upstream/<release>*     | the upstream sources for a release matching one of the above                                              |
@@ -54,8 +56,10 @@ Debian: Creating soruce tarball
     ./scripts/create-tarball yaul-0.1.1
     mv ../yaul-0.1.1.tar.gz ../yaul0.1_0.1.1.orig.tar.gz
 
-Debian: Packaging for new Debian release
-````````````````````````````````````````
+Debian: Enable support for new Debian release
+`````````````````````````````````````````````
+
+In the following **replace stretch with your preferred release codename**.
 
 - Prepare initial ``debian`` directory::
 
@@ -80,11 +84,13 @@ Debian: Packaging for new Debian release
 - put initial files to branches::
 
     git checkout debian-upstream/stretch
+    rm -rf .gitignore
     mv gitignore.debian-upstream .gitignore
     git add .gitignore
     git commit -m 'added .gitignore'
 
     git checkout debian-debian/stretch
+    rm -rf .gitignore debian
     mv gitignore.debian-packaging .gitignore
     mv debian.stretch debian
     git add .gitignore debian
