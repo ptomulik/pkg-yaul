@@ -1,0 +1,35 @@
+/**
+\page MetafunConcept Metafunction 
+
+\par Description
+
+\par Refinement of
+
+\par Expression requirements
+
+|            Expression                   |                 Type                 |            Complexity            |
+| --------------------------------------- | ------------------------------------ | -------------------------------- |
+| <tt>xxx<T>::type</tt>                   |  `Y`                                 |  Unspecified                     |
+
+
+\par Expression semantics
+
+|            Expression                   |                                  Semantics                              |
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| <tt>xxx<T>::type</tt>                   |  Blah blah blah                                                         |
+
+
+\par Invariants
+
+For any Xxx `X` the following invariants always hold:
+
+- invariant 1
+- invariant 2
+
+\par Models
+
+- model1
+- model2
+
+\par See also
+*/

@@ -1,0 +1,47 @@
+/**
+\page VariadicTemplateSeqConcept Variadic Template Sequence
+
+\par Description
+
+\ref VariadicTemplateSeqConcept `S` is a \ref TemplateSeqConcept which is an
+instantiation of variadic template class `X` of the following form
+
+\code
+template <class...> struct X;
+\endcode
+
+
+\par Refinement of
+
+\ref TemplateSeqConcept
+
+\par Expression requirements
+
+
+|            Expression                   |                 Type                 |            Complexity            |
+| --------------------------------------- | ------------------------------------ | -------------------------------- |
+| <tt>xxx<T>::type</tt>                   |  Unknown                             |  Unspecified                     |
+
+
+\par Expression semantics
+
+|            Expression                   |                                  Semantics                              |
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| <tt>xxx<T>::type</tt>                   |  Bla bla bla bla                                                        |
+
+
+\par Invariants
+
+For any Xxx `X` the following invariants always hold:
+
+- invariant 1
+- invariant 2
+
+\par Models
+
+- model1
+- model2
+
+
+\par See also
+*/

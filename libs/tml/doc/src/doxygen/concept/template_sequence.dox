@@ -1,0 +1,72 @@
+/**
+\page TemplateSeqConcept Template Sequence
+
+\par Description
+
+A \ref TemplateSeqConcept `S` is an instantiation of a template class `X`
+which matches the following template parameter specification
+
+\code
+template<class ...> struct Y
+\endcode
+
+and for which the expression requirements listed below hold.
+
+That said, any variadic and fixed-size template class with type template
+parameters only may fulfil the requirements of \ref TemplateSeqConcept concept.
+
+\par Refinement of
+
+\ref RandomSeqConcept
+
+\par Expression requirements
+
+Assume that
+
+- ``S`` is a model of \ref TemplateSeqConcept,
+- ``X`` is a template class matching the following template parameter
+  specification
+  \code
+      template<class...> struct Y
+  \endcode
+  and such that ``X<T0,...T{n-1}>`` is identical to ``S`` for some types
+  ``T0,...T{n-1}``,
+- ``i`` is an \ref IntConstConcept (``0 <= i::value < n``), and
+- ``F`` is a \ref LambdaExprConcept such that
+  \code
+    typedef apply<F,T0,...T{n-1}>::type R;
+  \endcode
+  has constant time complexity
+
+Then the following expressions requirements must hold
+
+|            Expression                   |                 Type                 |            Complexity            |
+| --------------------------------------- | ------------------------------------ | -------------------------------- |
+| <tt>at<S, i>::type</tt>                 |  ``Ti``                              |  Constant time                   |
+| <tt>front<S>::type</tt>                 |  ``T0``                              |  Constant time                   |
+| <tt>back<S>::type</tt>                  |  ``T{n-1}``                          |  Constant time                   |
+| <tt>size<S>::type</tt>                  |  \ref IntConstConcept                |  Constant time                   |
+| <tt>apply_sequence<F, S>::type</tt>     |  ``R``                               |  Constant time                   |
+
+
+\par Expression semantics
+
+|            Expression                   |                                  Semantics                              |
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| <tt>apply_sequence<F, S>::type</tt>     |  Equivalent to <tt>apply<F, T1, ...Tn>::type</tt>                       |
+
+
+\par Invariants
+
+For any \ref TemplateSeqConcept ``S`` being an instantiation ``X<T0,...T{n-1}>``
+of some template ``X`` the following invariants always hold:
+
+- <tt>size<S>::value == n</tt>, 
+
+\par Models
+
+- model1
+- model2
+
+\par See also
+*/

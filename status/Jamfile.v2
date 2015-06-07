@@ -1,0 +1,55 @@
+# Boost regression-testing Jamfile
+#  (C) Copyright David Abrahams 2002. Permission to copy, use, modify, sell and
+#  distribute this software is granted provided this copyright notice appears in
+#  all copies. This software is provided "as is" without express or implied
+#  warranty, and with no claim as to its suitability for any purpose.
+
+#  Status:
+#  - std::locale-support usage is commented out.
+#  Two test suite have different names.
+#  <no-warn> in config test is commented out.
+#  One of the smart_ptr test is run only from invocation dir in V1, and not
+#  run in V2 at all.
+
+
+project status
+    : source-location $(BOOST_ROOT)
+    : requirements <hardcode-dll-paths>true
+    ;
+
+import testing ;
+import modules ;
+
+local rule run-tests ( root : tests * )
+{
+    local limit-tests = [ MATCH "^--limit-tests=(.*)" : [ modules.peek : ARGV ] ] ;
+    for local test in $(tests)
+    {
+        if $(limit-tests)
+        {
+            if [ MATCH "^($(limit-tests))" : $(test) ]
+            {
+                build-project ../$(root)/$(test) ;
+            }
+            else
+            {
+                use-project /yaul/$(test) : ../$(root)/$(test) ;
+            }
+        }
+        else
+        {
+            build-project ../$(root)/$(test) ;
+        }
+    }
+}
+
+# Tests from Jamfiles in individual library test subdirectories
+# Please keep these in alphabetic order by test-suite name
+run-tests libs :
+    tml/test                    # test-suite tml
+    tml/example                 # test-suite tml
+    variant/test                # test-suite variant
+    ;
+
+run-tests tools :
+    ;
