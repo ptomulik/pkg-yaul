@@ -4,7 +4,7 @@ Source: https://github.com/ptomulik/yaul
 
 Files: *
 Copyright: 2012-2015 Paweł Tomulik <ptomulik@meil.pw.edu.pl>
-License: MIT
+License: Boost
   Boost Software License - Version 1.0 
   ------------------------------------
   .
